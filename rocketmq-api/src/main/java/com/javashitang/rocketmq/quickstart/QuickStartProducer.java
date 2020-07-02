@@ -1,7 +1,6 @@
-package com.javashitang.rocketmq.chapter_1_quickstart;
+package com.javashitang.rocketmq.quickstart;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
@@ -14,17 +13,14 @@ public class QuickStartProducer {
     public static final String TOPIC_NAME = "testTopic";
     public static final String TAG_NAME = "testTag";
 
-    public static void main(String[] args) throws MQClientException {
-        DefaultMQProducer producer = new DefaultMQProducer("unique_group_name");
+    public static void main(String[] args) throws Exception {
+        DefaultMQProducer producer = new DefaultMQProducer(RPODUCER_GROUP_NAME);
         producer.start();
 
         for (int i = 0; i < 100; i++) {
-            try {
-                Message message = new Message(TOPIC_NAME, TAG_NAME, ("hello rocketmq " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
-                SendResult sendResult = producer.send(message);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            Message message = new Message(TOPIC_NAME, TAG_NAME, ("hello rocketmq " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+            SendResult sendResult = producer.send(message);
+            System.out.println(sendResult);
         }
 
         producer.shutdown();
