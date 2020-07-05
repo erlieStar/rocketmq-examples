@@ -1,4 +1,4 @@
-package com.javashitang.rocketmq.broadcast;
+package com.javashitang.rocketmq.delayMessage;
 
 import com.javashitang.rocketmq.quickstart.QuickStartProducer;
 import lombok.extern.slf4j.Slf4j;
@@ -8,25 +8,25 @@ import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
 import org.apache.rocketmq.common.message.MessageExt;
-import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
 
 import java.util.List;
 
 @Slf4j
-public class BroadcastConsumer {
+public class DelayMessageConsumer {
 
-    public static final String CONSUMER_GROUP_NAME = "broadcastConsumerGroup";
+    public static final String CONSUMER_GROUP_NAME = "quickStartConsumerGroup";
 
     public static void main(String[] args) throws Exception {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(CONSUMER_GROUP_NAME);
-        // 设置消费模式为广播，默认为集群消费模式
-        consumer.setMessageModel(MessageModel.BROADCASTING);
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
         consumer.subscribe(QuickStartProducer.TOPIC_NAME, "*");
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override
             public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> list, ConsumeConcurrentlyContext consumeConcurrentlyContext) {
-                System.out.printf("%s receive new message %s", Thread.currentThread().getName(), list);
+                for (MessageExt message : list) {
+                    System.out.printf("%s receive new message %s%n", Thread.currentThread().getName(), message);
+                    System.out.printf("delay time is %s%n", System.currentTimeMillis() - message.getStoreTimestamp());
+                }
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }
         });

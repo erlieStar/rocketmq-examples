@@ -1,4 +1,4 @@
-package com.javashitang.rocketmq.ordermessage;
+package com.javashitang.rocketmq.orderMessage;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
@@ -20,6 +20,7 @@ public class OrderMsgConsumer {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(CONSUMER_GROUP_NAME);
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
         consumer.subscribe(OrderMsgProducer.TOPIC_NAME, "TagA | TagC");
+        // 注意这里的listener是MessageListenerOrderly
         consumer.registerMessageListener(new MessageListenerOrderly() {
 
             AtomicLong consumeTimes = new AtomicLong(0);
