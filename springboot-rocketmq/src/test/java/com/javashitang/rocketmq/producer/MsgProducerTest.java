@@ -1,33 +1,39 @@
 package com.javashitang.rocketmq.producer;
 
-import com.javashitang.rocketmq.config.RabbitMqConfig;
+import org.apache.rocketmq.client.producer.SendCallback;
+import org.apache.rocketmq.client.producer.SendResult;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MsgProducerTest {
 
     @Autowired
-    AmqpTemplate amqpTemplate;
+    private RocketMQTemplate rocketMQTemplate;
 
     @Test
-    public void sendMsg() {
-        for (int i = 0; i < 5; i++) {
-            String message = "hello rocketmq " + i;
-            amqpTemplate.convertAndSend(RabbitMqConfig.LOG_QUEUE, message);
-        }
+    public void syncSend() {
+        SendResult sendResult = rocketMQTemplate.syncSend("syncTopic:tag1" ,"hello world");
+        System.out.printf("syncSend sendResult=%s %n", sendResult);
+    }
 
-        try {
-            TimeUnit.SECONDS.sleep(3);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    @Test
+    public void asyncSend() {
+        rocketMQTemplate.asyncSend("asyncTopic", "hello world", new SendCallback() {
+            @Override
+            public void onSuccess(SendResult sendResult) {
+                System.out.printf("asyncSend onSuccess sendResult=%s %n", sendResult);
+            }
+
+            @Override
+            public void onException(Throwable throwable) {
+                System.out.printf("asyncSend onException throwable=%s %n", throwable);
+            }
+        });
     }
 }
