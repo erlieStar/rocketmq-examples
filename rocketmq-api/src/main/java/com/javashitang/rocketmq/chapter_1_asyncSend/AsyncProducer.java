@@ -1,4 +1,4 @@
-package com.javashitang.rocketmq.simple;
+package com.javashitang.rocketmq.chapter_1_asyncSend;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendCallback;

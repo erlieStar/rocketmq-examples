@@ -1,5 +1,6 @@
-package com.javashitang.rocketmq.quickstart;
+package com.javashitang.rocketmq.chapter_3_delayMsg;
 
+import com.javashitang.rocketmq.chapter_0_quickstart.QuickStartProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
@@ -11,7 +12,7 @@ import org.apache.rocketmq.common.message.MessageExt;
 import java.util.List;
 
 @Slf4j
-public class QuickStartConsumer {
+public class DelayMessageConsumer {
 
     public static final String CONSUMER_GROUP_NAME = "quickStartConsumerGroup";
 
@@ -22,7 +23,10 @@ public class QuickStartConsumer {
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override
             public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> list, ConsumeConcurrentlyContext consumeConcurrentlyContext) {
-                System.out.printf("%s receive new message %s", Thread.currentThread().getName(), list);
+                for (MessageExt message : list) {
+                    System.out.printf("%s receive new message %s%n", Thread.currentThread().getName(), message);
+                    System.out.printf("delay time is %s%n", System.currentTimeMillis() - message.getStoreTimestamp());
+                }
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }
         });

@@ -1,4 +1,4 @@
-package com.javashitang.rocketmq.delayMessage;
+package com.javashitang.rocketmq.chapter_3_delayMsg;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;

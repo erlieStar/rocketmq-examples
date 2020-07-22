@@ -1,4 +1,4 @@
-package com.javashitang.rocketmq.filter;
+package com.javashitang.rocketmq.chapter_4_tagFilter;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;

@@ -27,12 +27,12 @@ public class MsgProducerTest {
         rocketMQTemplate.asyncSend("asyncTopic", "hello world", new SendCallback() {
             @Override
             public void onSuccess(SendResult sendResult) {
-                System.out.printf("asyncSend onSuccess sendResult=%s %n", sendResult);
+                System.out.printf("chapter_1_asyncSend onSuccess sendResult=%s %n", sendResult);
             }
 
             @Override
             public void onException(Throwable throwable) {
-                System.out.printf("asyncSend onException throwable=%s %n", throwable);
+                System.out.printf("chapter_1_asyncSend onException throwable=%s %n", throwable);
             }
         });
     }

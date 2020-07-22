@@ -1,4 +1,4 @@
-package com.javashitang.rocketmq.transaction;
+package com.javashitang.rocketmq.chapter_3_transactionMsg;
 
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.TransactionListener;
@@ -24,7 +24,7 @@ public class TransactionProducer {
             @Override
             public Thread newThread(Runnable r) {
                 Thread thread = new Thread();
-                thread.setName("transaction-msg-check-thread");
+                thread.setName("chapter_3_transactionMsg-msg-check-thread");
                 return thread;
             }
         });

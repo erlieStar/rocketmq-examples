@@ -1,4 +1,4 @@
-package com.javashitang.rocketmq.orderMessage;
+package com.javashitang.rocketmq.chapter_3_orderMsg;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;

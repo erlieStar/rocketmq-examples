@@ -1,4 +1,4 @@
-package com.javashitang.rocketmq.simple;
+package com.javashitang.rocketmq.chapter_5_pull;
 
 public class PushConsumer {
 
