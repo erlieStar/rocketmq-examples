@@ -1,21 +1,21 @@
-package com.javashitang.rocketmq.chapter_0_quickstart;
+package com.javashitang.rocketmq.chapter_1_syncSend;
 
-import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
 
-@Slf4j
-public class QuickStartProducer {
+public class SyncProducer {
 
-    public static final String RPODUCER_GROUP_NAME = "quickStartProducerGroup";
-    public static final String TOPIC_NAME = "quickStartTopic";
-    public static final String TAG_NAME = "quickStartTag";
+    public static final String RPODUCER_GROUP_NAME = "syncProducerGroup";
+    public static final String TOPIC_NAME = "syncTopic";
+    public static final String TAG_NAME = "syncTag";
 
     public static void main(String[] args) throws Exception {
         DefaultMQProducer producer = new DefaultMQProducer(RPODUCER_GROUP_NAME);
-        producer.setNamesrvAddr("www.javashitang.com:9876");
+        // 设置重试次数为5次
+        producer.setRetryTimesWhenSendFailed(5);
+        producer.setRetryTimesWhenSendAsyncFailed(5);
         producer.start();
 
         for (int i = 0; i < 100; i++) {

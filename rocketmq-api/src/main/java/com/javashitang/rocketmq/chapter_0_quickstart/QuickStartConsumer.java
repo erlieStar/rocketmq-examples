@@ -17,6 +17,7 @@ public class QuickStartConsumer {
 
     public static void main(String[] args) throws Exception {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(CONSUMER_GROUP_NAME);
+        consumer.setNamesrvAddr("www.javashitang.com:9876");
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
         consumer.subscribe(QuickStartProducer.TOPIC_NAME, "*");
         consumer.registerMessageListener(new MessageListenerConcurrently() {
