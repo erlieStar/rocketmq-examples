@@ -10,6 +10,9 @@ import org.apache.rocketmq.remoting.common.RemotingHelper;
 
 import java.util.List;
 
+/**
+ * 针对一个订单的不同状态的变更消息发送到同一个消息队列上
+ */
 @Slf4j
 public class OrderMsgProducer {
 
