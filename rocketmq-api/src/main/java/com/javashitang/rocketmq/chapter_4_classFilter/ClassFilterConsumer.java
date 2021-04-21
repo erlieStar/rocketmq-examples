@@ -12,6 +12,9 @@ import org.apache.rocketmq.common.message.MessageExt;
 import java.io.File;
 import java.util.List;
 
+/**
+ * filterServer 在 5.0.0版本将会被移除
+ */
 @Slf4j
 public class ClassFilterConsumer {
 
