@@ -12,6 +12,10 @@ public class MessageFilterImpl implements MessageFilter {
 
     @Override
     public boolean match(MessageExt msg, FilterContext context) {
+        String sourceId = msg.getProperty("sourceId");
+        if (sourceId != null && ((Integer.valueOf(sourceId) & 1) == 1)) {
+            return true;
+        }
         return false;
     }
 }

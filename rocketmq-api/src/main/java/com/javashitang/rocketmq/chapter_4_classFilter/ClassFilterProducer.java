@@ -9,18 +9,16 @@ import org.apache.rocketmq.remoting.common.RemotingHelper;
 @Slf4j
 public class ClassFilterProducer {
 
-    public static final String RPODUCER_GROUP_NAME = "sqlFilterProducerGroup";
-    public static final String TOPIC_NAME = "testTopic";
+    public static final String RPODUCER_GROUP_NAME = "classFilterProducerGroup";
+    public static final String TOPIC_NAME = "classFilterTopic";
 
     public static void main(String[] args) throws Exception {
         DefaultMQProducer producer = new DefaultMQProducer(RPODUCER_GROUP_NAME);
         producer.start();
 
-        String[] tags = new String[] {"TagA", "TagB", "TagC"};
-
         for (int i = 0; i < 60; i++) {
-            Message message = new Message(TOPIC_NAME, tags[i % tags.length], ("hello rocketmq " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
-            message.putUserProperty("a", String.valueOf(i));
+            Message message = new Message(TOPIC_NAME, ("hello rocketmq " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+            message.putUserProperty("sourceId", String.valueOf(i));
             SendResult sendResult = producer.send(message);
             System.out.println(sendResult);
         }
