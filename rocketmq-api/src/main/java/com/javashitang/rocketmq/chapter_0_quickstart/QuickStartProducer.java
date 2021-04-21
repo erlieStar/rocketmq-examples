@@ -11,7 +11,6 @@ public class QuickStartProducer {
 
     public static final String RPODUCER_GROUP_NAME = "quickStartProducerGroup";
     public static final String TOPIC_NAME = "quickStartTopic";
-    public static final String TAG_NAME = "quickStartTag";
 
     public static void main(String[] args) throws Exception {
         DefaultMQProducer producer = new DefaultMQProducer(RPODUCER_GROUP_NAME);
@@ -19,7 +18,7 @@ public class QuickStartProducer {
         producer.start();
 
         for (int i = 0; i < 100; i++) {
-            Message message = new Message(TOPIC_NAME, TAG_NAME, ("hello rocketmq " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+            Message message = new Message(TOPIC_NAME, ("hello rocketmq " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
             SendResult sendResult = producer.send(message);
             System.out.println(sendResult);
         }
