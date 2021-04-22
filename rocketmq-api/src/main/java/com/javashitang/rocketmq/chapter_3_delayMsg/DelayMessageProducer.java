@@ -7,11 +7,11 @@ import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
 
 @Slf4j
-public class DealyMessageProducer {
+public class DelayMessageProducer {
 
-    public static final String RPODUCER_GROUP_NAME = "quickStartProducerGroup";
-    public static final String TOPIC_NAME = "testTopic";
-    public static final String TAG_NAME = "testTag";
+    public static final String RPODUCER_GROUP_NAME = "delayProducerGroup";
+    public static final String TOPIC_NAME = "delayTopic";
+    public static final String TAG_NAME = "delayTag";
 
     public static void main(String[] args) throws Exception {
         DefaultMQProducer producer = new DefaultMQProducer(RPODUCER_GROUP_NAME);

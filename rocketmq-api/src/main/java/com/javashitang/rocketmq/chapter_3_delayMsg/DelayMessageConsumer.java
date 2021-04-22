@@ -14,7 +14,7 @@ import java.util.List;
 @Slf4j
 public class DelayMessageConsumer {
 
-    public static final String CONSUMER_GROUP_NAME = "quickStartConsumerGroup";
+    public static final String CONSUMER_GROUP_NAME = "delayConsumerGroup";
 
     public static void main(String[] args) throws Exception {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(CONSUMER_GROUP_NAME);
