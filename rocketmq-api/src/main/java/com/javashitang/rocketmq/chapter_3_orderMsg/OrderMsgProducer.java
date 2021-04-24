@@ -16,16 +16,16 @@ import java.util.List;
 @Slf4j
 public class OrderMsgProducer {
 
-    public static final String RPODUCER_GROUP_NAME = "quickStartProducerGroup";
-    public static final String TOPIC_NAME = "testTopic";
+    public static final String RPODUCER_GROUP_NAME = "orderMsgProducerGroup";
+    public static final String TOPIC_NAME = "orderMsgTopic";
 
     public static void main(String[] args) throws Exception {
         DefaultMQProducer producer = new DefaultMQProducer(RPODUCER_GROUP_NAME);
         producer.start();
 
         String[] tags = new String[] {"TagA", "TageB", "TagC", "TageD"};
-        for (int i = 0; i < 100; i++) {
-            int orderId = i % 100;
+        for (int i = 0; i < 5; i++) {
+            int orderId = i % 10;
             Message message = new Message(TOPIC_NAME, tags[i % tags.length], ("hello rocketmq " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
             SendResult sendResult = producer.send(message, new MessageQueueSelector() {
                 /**

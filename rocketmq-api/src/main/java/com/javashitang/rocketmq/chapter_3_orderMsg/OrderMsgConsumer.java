@@ -14,22 +14,17 @@ import java.util.concurrent.atomic.AtomicLong;
 @Slf4j
 public class OrderMsgConsumer {
 
-    public static final String CONSUMER_GROUP_NAME = "quickStartConsumerGroup";
+    public static final String CONSUMER_GROUP_NAME = "orderMsgConsumerGroup";
 
     public static void main(String[] args) throws Exception {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(CONSUMER_GROUP_NAME);
-        consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
         consumer.subscribe(OrderMsgProducer.TOPIC_NAME, "TagA | TagC");
         // 注意这里的listener是MessageListenerOrderly
         consumer.registerMessageListener(new MessageListenerOrderly() {
 
-            AtomicLong consumeTimes = new AtomicLong(0);
-
             @Override
             public ConsumeOrderlyStatus consumeMessage(List<MessageExt> msgs, ConsumeOrderlyContext context) {
-                if (this.consumeTimes.get() % 2 == 0) {
-                    return ConsumeOrderlyStatus.SUCCESS;
-                }
+
                 return ConsumeOrderlyStatus.SUCCESS;
             }
         });
