@@ -16,14 +16,17 @@ public class TagFilterConsumer {
 
     public static void main(String[] args) throws Exception {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(CONSUMER_GROUP_NAME);
+        consumer.setNamesrvAddr("myhost:9876");
         consumer.subscribe(TagFilterProducer.TOPIC_NAME, "TagA || TagC");
+
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override
             public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> list, ConsumeConcurrentlyContext consumeConcurrentlyContext) {
-                System.out.printf("%s receive new message %s", Thread.currentThread().getName(), list);
+                System.out.printf("%s receive new message %s \n", Thread.currentThread().getName(), list);
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }
         });
+
         consumer.start();
         System.out.println("Consumer Started");
     }

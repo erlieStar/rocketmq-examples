@@ -13,20 +13,23 @@ import java.util.List;
 @Slf4j
 public class SqlFilterConsumer {
 
-    public static final String CONSUMER_GROUP_NAME = "quickStartConsumerGroup";
+    public static final String CONSUMER_GROUP_NAME = "sqlFilterConsumerGroup";
 
     public static void main(String[] args) throws Exception {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(CONSUMER_GROUP_NAME);
+        consumer.setNamesrvAddr("myhost:9876");
         consumer.subscribe(SqlFilterProducer.TOPIC_NAME,
                 MessageSelector.bySql("(TAGS is not null and TAGS in ('TagA', 'TagB'))"
                 + "and (a is not null and a between 0 and 3)"));
+
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override
             public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> list, ConsumeConcurrentlyContext consumeConcurrentlyContext) {
-                System.out.printf("%s receive new message %s", Thread.currentThread().getName(), list);
+                System.out.printf("%s receive new message %s \n", Thread.currentThread().getName(), list);
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }
         });
+
         consumer.start();
         System.out.println("Consumer Started");
     }

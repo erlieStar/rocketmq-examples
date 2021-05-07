@@ -14,11 +14,13 @@ public class TagFilterProducer {
 
     public static void main(String[] args) throws Exception {
         DefaultMQProducer producer = new DefaultMQProducer(RPODUCER_GROUP_NAME);
+        producer.setNamesrvAddr("myhost:9876");
+        producer.setSendMsgTimeout(6000);
         producer.start();
 
         String[] tags = new String[] {"TagA", "TagB", "TagC"};
 
-        for (int i = 0; i < 60; i++) {
+        for (int i = 0; i < 12; i++) {
             Message message = new Message(TOPIC_NAME, tags[i % tags.length], ("hello rocketmq " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
             SendResult sendResult = producer.send(message);
             System.out.println(sendResult);
