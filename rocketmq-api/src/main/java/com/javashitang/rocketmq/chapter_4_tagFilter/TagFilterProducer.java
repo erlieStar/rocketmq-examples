@@ -10,7 +10,7 @@ import org.apache.rocketmq.remoting.common.RemotingHelper;
 public class TagFilterProducer {
 
     public static final String RPODUCER_GROUP_NAME = "tagFilterProducerGroup";
-    public static final String TOPIC_NAME = "testTopic";
+    public static final String TOPIC_NAME = "tagFilterTopic";
 
     public static void main(String[] args) throws Exception {
         DefaultMQProducer producer = new DefaultMQProducer(RPODUCER_GROUP_NAME);
