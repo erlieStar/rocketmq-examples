@@ -23,12 +23,15 @@ public class AsyncProducer {
             int index = i;
             Message message = new Message(TOPIC_NAME, TAG_NAME, ("hello rocketmq " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
             producer.send(message, new SendCallback() {
+
+                // 发送成功回调 onSuccess
                 @Override
                 public void onSuccess(SendResult sendResult) {
                     countDownLatch.countDown();
                     System.out.printf("%d send success %s %n", index, sendResult.getMsgId());
                 }
 
+                // 发送失败回调 onException
                 @Override
                 public void onException(Throwable e) {
                     countDownLatch.countDown();
