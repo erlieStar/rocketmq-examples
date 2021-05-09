@@ -10,12 +10,12 @@ import java.util.concurrent.CountDownLatch;
 
 public class AsyncProducer {
 
-    public static final String RPODUCER_GROUP_NAME = "quickStartProducerGroup";
+    public static final String PRODUCER_GROUP_NAME = "quickStartProducerGroup";
     public static final String TOPIC_NAME = "testTopic";
     public static final String TAG_NAME = "testTag";
 
     public static void main(String[] args) throws Exception {
-        DefaultMQProducer producer = new DefaultMQProducer(RPODUCER_GROUP_NAME);
+        DefaultMQProducer producer = new DefaultMQProducer(PRODUCER_GROUP_NAME);
         producer.start();
         int megCount = 100;
         CountDownLatch countDownLatch = new CountDownLatch(megCount);

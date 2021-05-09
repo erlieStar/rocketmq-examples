@@ -10,13 +10,13 @@ import java.util.concurrent.*;
 
 public class TransactionProducer {
 
-    public static final String RPODUCER_GROUP_NAME = "transactionProducerGroup";
+    public static final String PRODUCER_GROUP_NAME = "transactionProducerGroup";
     public static final String TOPIC_NAME = "transactionTopic";
     public static final String TAG_NAME = "transactionTag";
 
     public static void main(String[] args) throws Exception {
         TransactionListener transactionListener = new TransactionListenerImpl();
-        TransactionMQProducer producer = new TransactionMQProducer(RPODUCER_GROUP_NAME);
+        TransactionMQProducer producer = new TransactionMQProducer(PRODUCER_GROUP_NAME);
 
         ExecutorService executorService = new ThreadPoolExecutor(2, 5, 100, TimeUnit.SECONDS,
                 new ArrayBlockingQueue<>(100), new ThreadFactory() {

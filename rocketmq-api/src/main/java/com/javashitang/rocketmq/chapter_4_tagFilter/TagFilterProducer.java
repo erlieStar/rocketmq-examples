@@ -9,11 +9,11 @@ import org.apache.rocketmq.remoting.common.RemotingHelper;
 @Slf4j
 public class TagFilterProducer {
 
-    public static final String RPODUCER_GROUP_NAME = "tagFilterProducerGroup";
+    public static final String PRODUCER_GROUP_NAME = "tagFilterProducerGroup";
     public static final String TOPIC_NAME = "tagFilterTopic";
 
     public static void main(String[] args) throws Exception {
-        DefaultMQProducer producer = new DefaultMQProducer(RPODUCER_GROUP_NAME);
+        DefaultMQProducer producer = new DefaultMQProducer(PRODUCER_GROUP_NAME);
         producer.setNamesrvAddr("myhost:9876");
         producer.setSendMsgTimeout(6000);
         producer.start();

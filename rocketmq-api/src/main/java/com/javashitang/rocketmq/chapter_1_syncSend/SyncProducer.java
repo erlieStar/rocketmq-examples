@@ -7,12 +7,12 @@ import org.apache.rocketmq.remoting.common.RemotingHelper;
 
 public class SyncProducer {
 
-    public static final String RPODUCER_GROUP_NAME = "syncProducerGroup";
+    public static final String PRODUCER_GROUP_NAME = "syncProducerGroup";
     public static final String TOPIC_NAME = "syncTopic";
     public static final String TAG_NAME = "syncTag";
 
     public static void main(String[] args) throws Exception {
-        DefaultMQProducer producer = new DefaultMQProducer(RPODUCER_GROUP_NAME);
+        DefaultMQProducer producer = new DefaultMQProducer(PRODUCER_GROUP_NAME);
         // 设置重试次数为5次
         producer.setRetryTimesWhenSendFailed(5);
         producer.setRetryTimesWhenSendAsyncFailed(5);

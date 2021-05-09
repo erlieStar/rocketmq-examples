@@ -16,11 +16,11 @@ import java.util.List;
 @Slf4j
 public class OrderMsgProducer {
 
-    public static final String RPODUCER_GROUP_NAME = "orderMsgProducerGroup";
+    public static final String PRODUCER_GROUP_NAME = "orderMsgProducerGroup";
     public static final String TOPIC_NAME = "orderMsgTopic";
 
     public static void main(String[] args) throws Exception {
-        DefaultMQProducer producer = new DefaultMQProducer(RPODUCER_GROUP_NAME);
+        DefaultMQProducer producer = new DefaultMQProducer(PRODUCER_GROUP_NAME);
         producer.start();
 
         String[] tags = new String[] {"TagA", "TageB", "TagC", "TageD"};

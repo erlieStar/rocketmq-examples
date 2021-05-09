@@ -15,12 +15,12 @@ import java.util.List;
  */
 public class SimpleBatchMsgProducer {
 
-    public static final String RPODUCER_GROUP_NAME = "batchProducerGroup";
+    public static final String PRODUCER_GROUP_NAME = "batchProducerGroup";
     public static final String TOPIC_NAME = "testTopic";
     public static final String TAG_NAME = "tag";
 
     public static void main(String[] args) throws Exception {
-        DefaultMQProducer producer = new DefaultMQProducer(RPODUCER_GROUP_NAME);
+        DefaultMQProducer producer = new DefaultMQProducer(PRODUCER_GROUP_NAME);
         producer.start();
         List<Message> messageList = new ArrayList<>();
         messageList.add(new Message(TOPIC_NAME, TAG_NAME, "id001", "hello world1".getBytes()));

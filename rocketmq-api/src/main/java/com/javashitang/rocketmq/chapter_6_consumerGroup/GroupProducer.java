@@ -13,11 +13,11 @@ import org.apache.rocketmq.remoting.common.RemotingHelper;
 @Slf4j
 public class GroupProducer {
 
-    public static final String RPODUCER_GROUP_NAME = "testProducerGroup";
+    public static final String PRODUCER_GROUP_NAME = "testProducerGroup";
     public static final String TOPIC_NAME = "testGroupTopic";
 
     public static void main(String[] args) throws Exception {
-        DefaultMQProducer producer = new DefaultMQProducer(RPODUCER_GROUP_NAME);
+        DefaultMQProducer producer = new DefaultMQProducer(PRODUCER_GROUP_NAME);
         producer.setSendMsgTimeout(6000);
         producer.setNamesrvAddr("www.javashitang.com:9876");
         producer.start();

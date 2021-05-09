@@ -6,12 +6,12 @@ import org.apache.rocketmq.remoting.common.RemotingHelper;
 
 public class OnewayProducer {
 
-    public static final String RPODUCER_GROUP_NAME = "onewayProducerGroup";
+    public static final String PRODUCER_GROUP_NAME = "onewayProducerGroup";
     public static final String TOPIC_NAME = "onewayTopic";
     public static final String TAG_NAME = "onewayTag";
 
     public static void main(String[] args) throws Exception {
-        DefaultMQProducer producer = new DefaultMQProducer(RPODUCER_GROUP_NAME);
+        DefaultMQProducer producer = new DefaultMQProducer(PRODUCER_GROUP_NAME);
         producer.start();
 
         for (int i = 0; i < 100; i++) {
