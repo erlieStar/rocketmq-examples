@@ -20,8 +20,8 @@ public class DelayMessageProducer {
 
         for (int i = 0; i < 3; i++) {
             Message message = new Message(TOPIC_NAME, TAG_NAME, ("hello rocketmq " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
-            // 设置消息延迟级别
-            message.setDelayTimeLevel(1);
+            // 设置消息延迟级别为2，延时5s左右
+            message.setDelayTimeLevel(2);
             SendResult sendResult = producer.send(message);
             System.out.println(sendResult);
         }
