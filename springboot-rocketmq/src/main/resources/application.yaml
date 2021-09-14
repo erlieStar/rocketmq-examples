@@ -1,7 +1,5 @@
-spring:
-  rabbitmq:
-    host: myhost
-    port: 5672
-    username: guest
-    password: guest
-    virtual-host: /
+rocketmq:
+  name-server: myhost:9876
+  producer:
+    group: demo-group
+    send-message-timeout: 6000

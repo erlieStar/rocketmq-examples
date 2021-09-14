@@ -1,5 +1,6 @@
 package com.javashitang.rocketmq.producer;
 
+import com.javashitang.rocketmq.domain.Student;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
@@ -7,6 +8,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -17,8 +20,19 @@ public class MsgProducerTest {
     private RocketMQTemplate rocketMQTemplate;
 
     @Test
-    public void syncSend() {
-        SendResult sendResult = rocketMQTemplate.syncSend("syncTopic:tag1" ,"hello world");
+    public void syncSendStr() {
+        SendResult sendResult = rocketMQTemplate.syncSend("syncTopic:syncStrTag" ,"hello world");
+        System.out.printf("syncSend sendResult=%s %n", sendResult);
+    }
+
+    @Test
+    public void syncSendStudent() {
+        Student student = new Student();
+        student.setName("test");
+        student.setAge(10);
+        Message<Student> message = MessageBuilder.withPayload(student).build();
+        rocketMQTemplate.syncSend("syncTopic:syncStudentTag", message);
+        SendResult sendResult = rocketMQTemplate.syncSend("syncTopic:syncStudentTag" , message);
         System.out.printf("syncSend sendResult=%s %n", sendResult);
     }
 
