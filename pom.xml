@@ -11,7 +11,7 @@
 
     <modules>
         <module>rocketmq-api</module>
-        <module>springboot-rocketmq</module>
+        <module>spring-boot-rocketmq</module>
     </modules>
 
 </project>

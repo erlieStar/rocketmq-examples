@@ -8,11 +8,10 @@
         <version>2.1.1.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.javashitang</groupId>
     <artifactId>springboot-rocketmq</artifactId>
     <version>1.0</version>
-    <name>springboot-rocketmq</name>
-    <description>Demo project for Spring Boot</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
