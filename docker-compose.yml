@@ -1,0 +1,21 @@
+version: '3'
+services:
+  namesrv:
+    image: apache/rocketmq:4.9.0
+    command: sh mqnamesrv
+    ports:
+      - "9876:9876"
+  broker:
+    image: apache/rocketmq:4.9.0
+    command: sh mqbroker -n namesrv:9876
+    ports:
+      - "10911:10911"
+      - "10909:10909"
+    environment:
+      - "JAVA_OPTS=-Duser.home=/opt"
+  dashboard:
+    image: apacherocketmq/rocketmq-dashboard:1.0.0
+    ports:
+      - "8080:8080"
+    environment:
+      - "JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876"
