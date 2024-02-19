@@ -16,7 +16,7 @@ public class GroupConsumerA {
 
     public static void main(String[] args) throws Exception {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(CONSUMER_GROUP_NAME);
-        consumer.setNamesrvAddr("www.javashitang.com:9876");
+        consumer.setNamesrvAddr("myhost:9876");
         consumer.subscribe(GroupProducer.TOPIC_NAME, "TagA");
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override

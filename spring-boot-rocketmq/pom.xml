@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>com.javashitang</groupId>
-    <artifactId>springboot-rocketmq</artifactId>
+    <artifactId>spring-boot-rocketmq</artifactId>
     <version>1.0</version>
 
     <properties>

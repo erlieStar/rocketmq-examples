@@ -19,7 +19,7 @@ public class GroupProducer {
     public static void main(String[] args) throws Exception {
         DefaultMQProducer producer = new DefaultMQProducer(PRODUCER_GROUP_NAME);
         producer.setSendMsgTimeout(6000);
-        producer.setNamesrvAddr("www.javashitang.com:9876");
+        producer.setNamesrvAddr("myhost:9876");
         producer.start();
 
         String[] tags = new String[] {"TagA", "TagB"};
